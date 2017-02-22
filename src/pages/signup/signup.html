@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>signup</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Signup</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -34,7 +34,7 @@
           [class.invalid]="!signupForm.controls.lastname.valid  && (passwordChanged || submitAttempt)">"></ion-input>
   </ion-item>
   <ion-item class="error-message" *ngIf="!signupForm.controls.lastname.valid  && (passwordChanged || submitAttempt)">
-      <p>Please Enter Your Last-name.</p>
+      <p>Please Enter Your lasname.</p>
     </ion-item>
 
   <ion-item>

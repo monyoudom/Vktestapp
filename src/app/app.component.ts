@@ -11,9 +11,6 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
   rootPage : any;
-  
-  
-
 
   constructor(platform: Platform,public zone:NgZone) {
 
@@ -32,10 +29,21 @@ export class MyApp {
     this.zone.run( () => {
     if (!user) {
       this.rootPage = LoginPage;
-     
-    } else { 
-      this.rootPage = HomePage; 
+
       
+    } else {
+      
+      
+      user.sendEmailVerification();
+      
+      if (user.emailVerified) {
+        this.rootPage = HomePage;
+        console.log('Email is verified');
+      }
+      else {
+        this.rootPage = LoginPage;
+        console.log('Email is not verified');
+      }
     }
   });     
  

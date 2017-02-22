@@ -61,6 +61,12 @@ export class SignupPage {
          this.authData.logoutUser().then(() => {
                  this.navCtrl.setRoot(LoginPage);
                   });
+      let alert = this.alertCtrl.create({
+      title: 'Comfiremation',
+      subTitle: 'You need to verified your email',
+      buttons: ['OK']
+    });
+    alert.present();
 
       //    this.userProfile.child(newUser.uid).set({
       //    firstname : this.signupForm.value.firstname,

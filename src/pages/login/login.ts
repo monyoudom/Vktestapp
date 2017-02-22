@@ -38,8 +38,17 @@ export class LoginPage {
   }
   else {
       this.authData.login(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
-        
+        if (authData.emailVerified){
         this.navCtrl.setRoot(HomePage);
+      }
+      else{
+        let alert = this.alertCtrl.create({
+      title: 'Comfiremation',
+      subTitle: 'You need to verified your email',
+      buttons: ['OK']
+    });
+    alert.present();
+      }
       
       }, error => {
 
