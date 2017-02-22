@@ -10,12 +10,12 @@ import { LoginPage } from '../pages/login/login';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage : any = HomePage;
-  zone: NgZone;
+  rootPage : any;
+  
   
 
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform,public zone:NgZone) {
 
  var config = {
     apiKey: "AIzaSyA_gs_VbEeIUBqOKjsVJwxRlyhao1ocviQ",
@@ -26,12 +26,18 @@ export class MyApp {
   };
   firebase.initializeApp(config);
  
-  const unsubscribe = firebase.auth().onAuthStateChanged( user =>{
-     if(!user){
-       alert("Error");
-        this.rootPage = LoginPage;
-        console.log("There's not a logged in user!");
- }
+ 
+  firebase.auth().onAuthStateChanged( user =>{
+
+    this.zone.run( () => {
+    if (!user) {
+      this.rootPage = LoginPage;
+     
+    } else { 
+      this.rootPage = HomePage; 
+      
+    }
+  });     
  
   });
   

@@ -10,24 +10,38 @@ import firebase from 'firebase';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class Server {
+export class AuthData {
+  
   public fireAuth :any;
   public userProfile: any;
 
   constructor(public http: Http) {
+  
    this.fireAuth = firebase.auth();
    this.userProfile = firebase.database().ref('/userProfile'); 
 
   }
+  
 
   login(email:string, password: string): any{
     return this.fireAuth.signInWithEmailAndPassword(email,password);
 
   }
 
-  signupUser(email:string,password:string):any{
+  signupUser(firstname:string,lastname:string,email:string, password:string,phone:any):any{
     return this.fireAuth.createUserWithEmailAndPassword(email,password).then((newUser)=>{
-      this.userProfile.child(newUser.uid).set({email:email});
+      this.userProfile.child(newUser.uid).set(
+    { 
+        firstname : firstname ,
+        lastname : lastname,
+       email:email,
+       phone : phone,
+
+             
+      
+    }
+        
+        );
     });
   }
 
@@ -35,6 +49,6 @@ export class Server {
  return this.fireAuth.sendPasswordResetEmail(email)
   }
 logoutUser():any{
-  return this.fireAuth.siguOut();
+  return this.fireAuth.signOut();
 }
 }

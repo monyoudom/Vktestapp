@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,LoadingController, 
+  AlertController } from 'ionic-angular';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AuthData } from '../../providers/auth-data';
+import { HomePage } from '../home/home';
+import {SignupPage} from '../signup/signup';
+import {ResetPasswordPage} from '../reset-password/reset-password';
 
 /*
   Generated class for the Login page.
@@ -12,13 +18,70 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+//items = ['sdfds','adf'];
+  public loginForm;
+  emailChanged: boolean = false;
+  passwordChanged: boolean = false;
+  submitAttempt: boolean = false;
+  loading: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder,public authData:AuthData,public alertCtrl: AlertController, 
+    public loadingCtrl: LoadingController) {
+    this.loginForm = formBuilder.group({
+        email: ['', Validators.compose([Validators.required])],
+        password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+      });
+  }
+ loginUser(){
+    this.submitAttempt = true;
+  if(!this.loginForm.valid){
     
   }
+  else {
+      this.authData.login(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
+        
+        this.navCtrl.setRoot(HomePage);
+      
+      }, error => {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+        this.loading.dismiss().then( () => {
+          let alert = this.alertCtrl.create({
+            message: "your email or password was wrong",
+            buttons: [
+              {
+                text: "Ok",
+                role: 'cancel'
+              }
+            ]
+          });
+          alert.present();          
+        });
+      });
+      
+       this.loading = this.loadingCtrl.create({
+        dismissOnPageChange: true,
+        content: "Please wait...",
+        duration: 500
+      });
+      this.loading.present();
+    }
 
 }
+elementChanged(input){
+   let field = input.inputControl.name;
+    this[field + "Changed"] = true;
+  }
+
+  goToSignup(){
+    this.navCtrl.push(SignupPage);
+  }
+  goToResetPassword(){
+    this.navCtrl.push(ResetPasswordPage);
+  }
+  
+  
+   
+}
+
+
+
+
