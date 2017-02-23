@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { TabPage } from '../pages/tab/tab'
 
 
 @Component({
@@ -37,12 +38,12 @@ export class MyApp {
       user.sendEmailVerification();
       
       if (user.emailVerified) {
-        this.rootPage = HomePage;
-        console.log('Email is verified');
+        this.rootPage = TabPage;
+        
       }
       else {
         this.rootPage = LoginPage;
-        console.log('Email is not verified');
+        
       }
     }
   });     

@@ -14,16 +14,18 @@ export class AuthData {
   
   public fireAuth :any;
   public userProfile: any;
-  
+  public user : any;
 
   constructor(public http: Http) {
   
    this.fireAuth = firebase.auth();
    this.userProfile = firebase.database().ref('/userProfile'); 
+  
+
 
   }
   
-
+// Login function service need to paramater email and password from login page
   login(email:string, password: string): any{
 
     return this.fireAuth.signInWithEmailAndPassword(email,password);
@@ -55,4 +57,8 @@ export class AuthData {
 logoutUser():any{
   return this.fireAuth.signOut();
 }
+
+
+
+
 }

@@ -1,15 +1,36 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title color="primery">
-     Home
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<!--
+  Generated template for the ResetPassword page.
 
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary" >
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+
+</ion-header>
 <ion-content padding>
-  The world is your oyster.
-  <button ion-button block (click)="logOut()">
-    logOut
-  </button>
-   
+<form [formGroup]="resetPasswordFrom" (submit)="resetPassword()">
+  <ion-item>
+     <ion-label floating>Enter your Post</ion-label>
+     <ion-input #email formControlName="email" type="text" (change)="elementChanged(email)"
+        [class.invalid]="!resetPasswordFrom.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
+  </ion-item>
+    <ion-item class="error-message" *ngIf="!resetPasswordFrom.controls.email.valid  && (emailChanged || submitAttempt)">
+      <p>Please enter a valid email.</p>
+    </ion-item>
+   <div padding>
+    <button ion-button color="primary" block>Post</button>
+  </div>  
+</form>
+<div padding>
+    <button ion-button color="primary" block (click)="logOut()">logOut</button>
+  </div>  
+
+
+
+
+
 </ion-content>

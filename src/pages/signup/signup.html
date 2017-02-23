@@ -21,20 +21,20 @@
       <ion-label floating>First-name</ion-label>
       <ion-input #firstname formControlName="firstname" type="text" (change)="elementChanged(firstname)"
         
-        [class.invalid]="!signupForm.controls.firstname.valid  && (passwordChanged || submitAttempt)">
+        [class.invalid]="!signupForm.controls.firstname.valid  && (firstnameChanged || submitAttempt)">
       </ion-input>
   </ion-item>
-  <ion-item class="error-message" *ngIf="!signupForm.controls.firstname.valid  && (passwordChanged || submitAttempt)">
+  <ion-item class="error-message" *ngIf="!signupForm.controls.firstname.valid  && (firstnameChanged || submitAttempt)">
       <p>Please Enter the Your First-name</p>
     </ion-item>
   <ion-item>
       <ion-label floating>Last-name</ion-label>
       <ion-input #lastname  formControlName="lastname" type="text" (change)="elementChanged(lastname)"
         
-          [class.invalid]="!signupForm.controls.lastname.valid  && (passwordChanged || submitAttempt)">"></ion-input>
+          [class.invalid]="!signupForm.controls.lastname.valid  && (lastnameChanged || submitAttempt)">"></ion-input>
   </ion-item>
-  <ion-item class="error-message" *ngIf="!signupForm.controls.lastname.valid  && (passwordChanged || submitAttempt)">
-      <p>Please Enter Your lasname.</p>
+  <ion-item class="error-message" *ngIf="!signupForm.controls.lastname.valid  && (lastnameChanged || submitAttempt)">
+      <p>Please Enter Your lastname.</p>
     </ion-item>
 
   <ion-item>
@@ -61,9 +61,9 @@
       <ion-label floating>Phone-Number</ion-label>
       <ion-input #phone formControlName="phone"  type="number" (change)="elementChanged(phone)"
         
-          [class.invalid]="!signupForm.controls.phone.valid  && (passwordChanged || submitAttempt)">"></ion-input>
+          [class.invalid]="!signupForm.controls.phone.valid  && (phoneChanged || submitAttempt)">"></ion-input>
   </ion-item>
-  <ion-item class="error-message" *ngIf="!signupForm.controls.phone.valid  && (passwordChanged || submitAttempt)">
+  <ion-item class="error-message" *ngIf="!signupForm.controls.phone.valid  && (phoneChanged || submitAttempt)">
       <p>Please Enter the Your Phone-Number</p>
     </ion-item>
 

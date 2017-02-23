@@ -62,7 +62,7 @@ export class SignupPage {
                  this.navCtrl.setRoot(LoginPage);
                   });
       let alert = this.alertCtrl.create({
-      title: 'Comfiremation',
+      title: 'Comfirmation',
       subTitle: 'You need to verified your email',
       buttons: ['OK']
     });

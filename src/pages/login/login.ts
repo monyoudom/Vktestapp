@@ -3,10 +3,10 @@ import { NavController, NavParams,LoadingController,
   AlertController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth-data';
-import { HomePage } from '../home/home';
+
 import {SignupPage} from '../signup/signup';
 import {ResetPasswordPage} from '../reset-password/reset-password';
-
+import {TabPage } from '../tab/tab';
 /*
   Generated class for the Login page.
 
@@ -39,11 +39,11 @@ export class LoginPage {
   else {
       this.authData.login(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
         if (authData.emailVerified){
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(TabPage);
       }
       else{
         let alert = this.alertCtrl.create({
-      title: 'Comfiremation',
+      title: 'Comfirmation',
       subTitle: 'You need to verified your email',
       buttons: ['OK']
     });
