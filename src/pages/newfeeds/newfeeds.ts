@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import firebase from 'firebase';
 
 /*
@@ -16,33 +16,33 @@ import firebase from 'firebase';
 export class NewfeedsPage {
   public userProfile: any;
   public userID: any;
-  public posts:any= [];
-  public loading:any;
- 
+  public posts: any = [];
+  public loading: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
-     this.userID  = firebase.auth().currentUser.uid;
-     this.userProfile = firebase.database().ref('/userProfile/' + this.userID+'/post/');
-     
 
-     this.userProfile.orderByChild("post").on("child_added", data =>{
-    this.posts.push(data.val().post);
-    console.log("posts   "+this.posts);
-});
-this.loading = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-        content: "Please wait...",
-        duration: 1000
-      });
-      this.loading.present();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+    this.userID = firebase.auth().currentUser.uid;
+    this.userProfile = firebase.database().ref('/userProfile/' + this.userID + '/post/');
+
+
+    this.userProfile.orderByKey().on("child_added", data => {
+      this.posts.push(data.val().post);
+      console.log("posts   " + this.posts);
+    });
+    this.loading = this.loadingCtrl.create({
+      dismissOnPageChange: true,
+      content: "Please wait...",
+      duration: 1000
+    });
+    this.loading.present();
 
 
   }
 
   NewFeed() {
     alert("test");
-    
+
 
   }
-    
+
 }

@@ -20,6 +20,9 @@ export class HomePage {
   public userID: any;
   public posts:any;
   loading: any;
+  public firstname :any;
+  public username:any;
+  public lastname:any;
   
   
   public data:any;
@@ -32,13 +35,22 @@ export class HomePage {
       //value from form resetPasswordFrom
      email: ['', Validators.compose([Validators.maxLength(100), Validators.required])],
     });
+   
     this.userID  = firebase.auth().currentUser.uid;
-    this.userProfile = firebase.database().ref('/userProfile/' + this.userID+'/post/')
+    this.userProfile = firebase.database().ref('/userProfile/' + this.userID+'/post/');
+    this.firstname = firebase.database().ref('/userProfile/').child(this.userID);
     
-    this.userProfile.orderByChild("post").on("child_added", data =>{
-    this.posts = data.val().post;
-    console.log("posts   "+this.posts);
-});
+    this.firstname.orderByChild("firstname").once("value", username =>{
+        this.username = username.val().firstname
+        this.lastname = username.val().lastname
+        console.log("firstname is "+this.username);
+        console.log("last name "+this.lastname);
+    });
+    this.userProfile.orderByKey().on("child_added", data =>{
+      this.posts = data.val().post;
+      console.log("posts   "+this.posts);
+      console.log("Hello :" + JSON.stringify(data.val()));
+    });
 
      
 

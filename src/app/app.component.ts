@@ -35,13 +35,14 @@ export class MyApp {
     } else {
       
       
-      user.sendEmailVerification();
+      
       
       if (user.emailVerified) {
         this.rootPage = TabPage;
         
       }
       else {
+        user.sendEmailVerification();
         this.rootPage = LoginPage;
         
       }

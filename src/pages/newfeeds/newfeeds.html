@@ -16,7 +16,7 @@
 <ion-content padding>
    <div *ngFor="let post of posts; let i=index">
       <!--<div *ngIf="i != 0">-->
-        <p>{{ post }}</p>
+        <p>{{ posts[posts.length - (i+1)] }}</p>
       <!--</div>-->
   </div>
 
