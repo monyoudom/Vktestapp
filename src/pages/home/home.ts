@@ -20,7 +20,7 @@ export class HomePage {
   public userID: any;
   public posts:any;
   loading: any;
-  public userChlid: any;
+  
   
   public data:any;
   
@@ -29,6 +29,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,public authData:AuthData,public formBuilder : FormBuilder,public loadingCtrl : LoadingController) {
     this.resetPasswordFrom = formBuilder.group({
+      //value from form resetPasswordFrom
      email: ['', Validators.compose([Validators.maxLength(100), Validators.required])],
     });
     this.userID  = firebase.auth().currentUser.uid;
@@ -38,6 +39,7 @@ export class HomePage {
     this.posts = data.val().post;
     console.log("posts   "+this.posts);
 });
+
      
 
     
@@ -50,6 +52,7 @@ export class HomePage {
     }
     else{
      this.userProfile.push({
+       //insert value from form email
    post : this.resetPasswordFrom.value.email,
    
 

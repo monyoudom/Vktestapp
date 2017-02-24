@@ -18,10 +18,12 @@ export class NewfeedsPage {
   public userID: any;
   public posts:any= [];
   public loading:any;
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
      this.userID  = firebase.auth().currentUser.uid;
      this.userProfile = firebase.database().ref('/userProfile/' + this.userID+'/post/');
+     
 
      this.userProfile.orderByChild("post").on("child_added", data =>{
     this.posts.push(data.val().post);
