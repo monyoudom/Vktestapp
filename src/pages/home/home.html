@@ -21,6 +21,7 @@
     <ion-item class="error-message" *ngIf="!resetPasswordFrom.controls.email.valid  && (emailChanged || submitAttempt)">
       <p>Please enter a valid email.</p>
     </ion-item>
+    
    <div padding>
     <button ion-button color="primary" block>Post</button>
   </div>  
@@ -28,6 +29,7 @@
 <div padding>
     <button ion-button color="primary" block (click)="logOut()">logOut</button>
   </div>  
+  
 
 
 

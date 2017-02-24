@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import {LoginPage } from '../login/login';
 import { AuthData } from'../../providers/auth-data';
 import firebase from 'firebase';
+import {NewfeedsPage} from '../newfeeds/newfeeds';
 
 
 @Component({
@@ -19,6 +20,9 @@ export class HomePage {
   public userID: any;
   public posts:any;
   loading: any;
+  public userChlid: any;
+  
+  public data:any;
   
   
   
@@ -28,7 +32,12 @@ export class HomePage {
      email: ['', Validators.compose([Validators.maxLength(100), Validators.required])],
     });
     this.userID  = firebase.auth().currentUser.uid;
-     this.userProfile = firebase.database().ref('/userProfile/' + this.userID+'/')
+    this.userProfile = firebase.database().ref('/userProfile/' + this.userID+'/post/')
+    
+    this.userProfile.orderByChild("post").on("child_added", data =>{
+    this.posts = data.val().post;
+    console.log("posts   "+this.posts);
+});
      
 
     
@@ -42,6 +51,7 @@ export class HomePage {
     else{
      this.userProfile.push({
    post : this.resetPasswordFrom.value.email,
+   
 
     });
     this.loading = this.loadingCtrl.create({
@@ -50,14 +60,12 @@ export class HomePage {
         duration: 1000
       });
       this.loading.present();
-this.userProfile.on("value", function(snapshot) {
-   console.log(snapshot.val());
-   alert("result"+JSON.stringify(snapshot.val()));
-}, function (error) {
-   console.log("Error: " + error.code);
-});
+      
 
 
+   
+    
+this.navCtrl.push(NewfeedsPage);
 
    
 

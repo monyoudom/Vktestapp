@@ -14,5 +14,10 @@
 
 
 <ion-content padding>
+   <div *ngFor="let test of posts; let i=index">
+      <div *ngIf="i != 0">
+        <p>{{ test }}</p>
+      </div>
+  </div>
 
 </ion-content>

@@ -7,6 +7,7 @@ import { AuthData } from '../providers/auth-data';
 import {SignupPage} from '../pages/signup/signup';
 import { TabPage } from '../pages/tab/tab'
 import {ResetPasswordPage} from '../pages/reset-password/reset-password';
+import {NewfeedsPage} from '../pages/newfeeds/newfeeds';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import {ResetPasswordPage} from '../pages/reset-password/reset-password';
     LoginPage,
     SignupPage,
     ResetPasswordPage,
-    TabPage
+    TabPage,
+    NewfeedsPage
+    
   ],
 imports: [
     IonicModule.forRoot(MyApp)
@@ -27,7 +30,8 @@ imports: [
     LoginPage,
     SignupPage,
     ResetPasswordPage,
-    TabPage
+    TabPage,
+    NewfeedsPage
   ],
   providers: [AuthData, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

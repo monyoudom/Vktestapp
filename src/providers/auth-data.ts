@@ -19,7 +19,7 @@ export class AuthData {
   constructor(public http: Http) {
   
    this.fireAuth = firebase.auth();
-   this.userProfile = firebase.database().ref('/userProfile'); 
+   this.userProfile = firebase.database().ref('/userProfile/'); 
   
 
 
