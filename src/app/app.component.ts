@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { TabPage } from '../pages/tab/tab'
-
+import { PostPage } from '../pages/post/post';
 
 @Component({
   templateUrl: 'app.html'

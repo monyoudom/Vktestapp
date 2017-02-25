@@ -7,28 +7,23 @@
 <ion-header>
 
   <ion-navbar color="primary" >
+    <ion-toolbar>
+     <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Home</ion-title>
+    </ion-toolbar>
   </ion-navbar>
 
 </ion-header>
 <ion-content padding>
   
-<form [formGroup]="resetPasswordFrom" (submit)="resetPassword()">
-  <ion-item>
-     <ion-label floating>Enter your Post</ion-label>
-     <ion-input #email formControlName="email" type="text" (change)="elementChanged(email)"
-        [class.invalid]="!resetPasswordFrom.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
-  </ion-item>
-    <ion-item class="error-message" *ngIf="!resetPasswordFrom.controls.email.valid  && (emailChanged || submitAttempt)">
-      <p>Please enter a valid email.</p>
-    </ion-item>
-    
-   <div padding>
-    <button ion-button color="primary" block>Post</button>
-  </div>  
-</form>
-<div padding>
-    <button ion-button color="primary" block (click)="logOut()">logOut</button>
+   <h2>Welcome to our Homepage </h2>
+   <h1>Thank you !</h1>
+   <img src="image/pic1.jpg">
+     
+  <div padding>
+    <button ion-button color="primary" block (click)="logOut()">LogOut</button>
   </div>  
   
 
