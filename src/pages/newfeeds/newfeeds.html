@@ -7,17 +7,51 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>newfeeds</ion-title>
+    <ion-title>New Feeds</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-   <div *ngFor="let post of posts; let i=index">
+ <div *ngFor="let post of posts; let i=index">
+  <ion-card>
+   <ion-item>
+      <ion-avatar item-left>
+        <img src="image/kit.jpg">
+      </ion-avatar>
+      <h2>{{username}}  {{lastname}}</h2>
+      <p>February,24 2017</p>
+    </ion-item>
+
+    <ion-card-content>
+      
       <!--<div *ngIf="i != 0">-->
         <p>{{ posts[posts.length - (i+1)] }}</p>
       <!--</div>-->
-  </div>
+ 
+    </ion-card-content>
 
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12 Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comments</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          3min ago
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+   </div>
 </ion-content>

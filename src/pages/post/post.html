@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+  	<ion-toolbar>
+	 
+	  <ion-title>
+	    Home
+	  </ion-title>
+	</ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <form [formGroup]="messages" (submit)="gotoNewfeeds()">
+  <ion-item>
+     
+     <ion-textarea #email placeholder="Write Something" formControlName="email" type="text" (change)="elementChanged(email)"
+        [class.invalid]="!messages.controls.email.valid && (emailChanged || submitAttempt)"></ion-textarea>
+  </ion-item>
+    <ion-item class="error-message" *ngIf="!messages.controls.email.valid  && (emailChanged || submitAttempt)">
+      <p style="color: red;border-top: 2px solid red;">Please Write Something.</p>
+    </ion-item>
+    
+   <div padding>
+    <button ion-button color="primary" >Post</button>
+  </div>  
+</form>
+
+  
+   
+</ion-content>

@@ -18,16 +18,25 @@ export class NewfeedsPage {
   public userID: any;
   public posts: any = [];
   public loading: any;
+  public firstname :any;
+  public username:any;
+  public lastname:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
     this.userID = firebase.auth().currentUser.uid;
-    this.userProfile = firebase.database().ref('/userProfile/' + this.userID + '/post/');
-
-
+    this.userProfile = firebase.database().ref('/userProfile/' + this.userID+'/post/');
+      
+ this.firstname = firebase.database().ref('/userProfile/').child(this.userID);
+    
+    this.firstname.orderByChild("firstname").once("value", username =>{
+        this.username = username.val().firstname
+        this.lastname = username.val().lastname
+       
+    });
     this.userProfile.orderByKey().on("child_added", data => {
       this.posts.push(data.val().post);
-      console.log("posts   " + this.posts);
+     
     });
     this.loading = this.loadingCtrl.create({
       dismissOnPageChange: true,
